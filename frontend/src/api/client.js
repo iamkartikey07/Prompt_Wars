@@ -1,19 +1,13 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: `${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api`,
   timeout: 60000,
   headers: { 'Content-Type': 'application/json' },
 });
 
 // ── Analysis ─────────────────────────────────────────────────────────────────
 
-/**
- * Analyze a text description and/or base64 image.
- * @param {string|null} description
- * @param {string|null} imageBase64  - pure base64 string (no data URI prefix)
- * @param {string|null} imageMimeType - e.g. "image/jpeg"
- */
 export async function analyzeIncident(description, imageBase64 = null, imageMimeType = null) {
   const { data } = await api.post('/analyze', { description, imageBase64, imageMimeType });
   return data;

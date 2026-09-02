@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: resqai-backend
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/resqai}
+
+server:
+  port: 8080
+
+gemini:
+  api:
+    key: ${GEMINI_API_KEY}
+    model: gemini-2.0-flash
+
+logging:
+  level:
+    com.resqai: DEBUG
+    root: INFO
